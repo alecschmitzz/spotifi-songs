@@ -19,7 +19,7 @@ env:
 
 
 jobs:
-  build:
+  build-and-push-image:
 
     runs-on: ubuntu-latest
     permissions:
@@ -92,3 +92,42 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+
+      - name: Run latest-tag
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: EndBug/latest-tag@latest
+        # with:
+          # You can change the name of the tag or branch with this input.
+          # Default: 'latest'
+          # ref: someCustomTagName
+      
+          # If a description is provided, the action will use it to create an annotated tag. If none is given, the action will create a lightweight tag.
+          # Default: ''
+          # description: Description for the tag
+      
+          # Force-update a branch instead of using a tag.
+          # Default: false
+          # force-branch: true
+      
+          # Directory to use when executing git commands
+          # Default: '${{ github.workspace }}'
+          # git-directory: 'path/to/repo/dir'
+        
+  start-rollout:
+      name: Start rollout on production.
+      needs: build-and-push-image
+      runs-on: ubuntu-latest
+      if: ${{ github.event_name != 'pull_request' }}
+      steps:
+        - name: Executing remote ssh commands using ssh key
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            port: ${{ secrets.SSH_PORT }}
+            script: |
+              cd /home/opc/spotifi
+              docker-compose pull
+              docker-compose up -d
+    
