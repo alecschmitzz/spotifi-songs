@@ -33,6 +33,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Run latest-tag
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: EndBug/latest-tag@latest
+
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
@@ -92,26 +96,6 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
-
-      - name: Run latest-tag
-        if: ${{ github.event_name != 'pull_request' }}
-        uses: EndBug/latest-tag@latest
-        # with:
-          # You can change the name of the tag or branch with this input.
-          # Default: 'latest'
-          # ref: someCustomTagName
-      
-          # If a description is provided, the action will use it to create an annotated tag. If none is given, the action will create a lightweight tag.
-          # Default: ''
-          # description: Description for the tag
-      
-          # Force-update a branch instead of using a tag.
-          # Default: false
-          # force-branch: true
-      
-          # Directory to use when executing git commands
-          # Default: '${{ github.workspace }}'
-          # git-directory: 'path/to/repo/dir'
         
   start-rollout:
       name: Start rollout on production.
