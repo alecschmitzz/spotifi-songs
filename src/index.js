@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import os from 'os';
 import {
   postSong,
   getSong,
@@ -28,6 +29,9 @@ app.patch(`${apiRoot}/songs/:id`, makeCallback(patchSong));
 app.patch(`${apiRoot}/songs`, makeCallback(patchSong));
 app.get(`${apiRoot}/songs`, makeCallback(getSongs));
 app.get(`${apiRoot}/songs/:id`, makeCallback(getSong));
+app.get(`${apiRoot}`, (req, res) => {
+  res.json({ message: "Ok it works...", hostname: os.hostname() })
+})
 app.use(makeCallback(notFound));
 
 // listen for requests

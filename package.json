@@ -19,6 +19,7 @@
     "sanitize-html": "^2.11.0"
   },
   "scripts": {
-    "dev": "bun --hot run ./src/index.js"
+    "dev": "bun --hot run ./src/index.js",
+    "build": "bunx prisma generate"
   }
 }
