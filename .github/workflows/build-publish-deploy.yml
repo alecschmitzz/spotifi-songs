@@ -112,6 +112,6 @@ jobs:
             port: ${{ secrets.SSH_PORT }}
             script: |
               cd /home/opc/spotifi
-              docker-compose pull
-              docker-compose up -d
+              docker compose pull
+              docker compose up -d
     
