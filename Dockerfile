@@ -66,5 +66,5 @@ COPY --from=prerelease /usr/src/app/package.json /usr/src/app
 
 # run the app
 USER bun
-EXPOSE 3000/tcp
+EXPOSE 3000
 CMD [ "bun", "run", "./src/index.js" ]
