@@ -27,7 +27,7 @@ jobs:
       packages: write
       # # This is used to complete the identity challenge
       # # with sigstore/fulcio when running outside of PRs.
-      # id-token: write
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -96,22 +96,23 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
-        
-  start-rollout:
-      name: Start rollout on production.
-      needs: build-and-push-image
-      runs-on: ubuntu-latest
-      if: ${{ github.event_name != 'pull_request' }}
-      steps:
-        - name: Executing remote ssh commands using ssh key
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.SSH_HOST }}
-            username: ${{ secrets.SSH_USERNAME }}
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            port: ${{ secrets.SSH_PORT }}
-            script: |
-              cd /home/opc/spotifi
-              sudo docker compose pull
-              sudo docker compose up -d
+
+  # unnecessary since using Watchtower
+  # start-rollout:
+  #     name: Start rollout on production.
+  #     needs: build-and-push-image
+  #     runs-on: ubuntu-latest
+  #     if: ${{ github.event_name != 'pull_request' }}
+  #     steps:
+  #       - name: Executing remote ssh commands using ssh key
+  #         uses: appleboy/ssh-action@master
+  #         with:
+  #           host: ${{ secrets.SSH_HOST }}
+  #           username: ${{ secrets.SSH_USERNAME }}
+  #           key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #           port: ${{ secrets.SSH_PORT }}
+  #           script: |
+  #             cd /home/opc/spotifi
+  #             sudo docker compose pull
+  #             sudo docker compose up -d
     
