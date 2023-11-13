@@ -1,5 +1,11 @@
-export default function makeGetSong({ getSingleSong }) {
-    return async function getSong(httpRequest) {
+import { HttpRequest, Song } from "../use-cases/types";
+
+interface GetSongDependencies {
+    getSingleSong: ({ id }: { id: string }) => Promise<Song | null>;
+}
+
+export default function makeGetSong({ getSingleSong }: GetSongDependencies) {
+    return async function getSong(httpRequest: HttpRequest) {
         const headers = {
             'Content-Type': 'application/json',
         };
@@ -10,14 +16,14 @@ export default function makeGetSong({ getSingleSong }) {
                 statusCode: 200,
                 body: song,
             };
-        } catch (e) {
+        } catch (e: unknown) {
             // TODO: Error logging
-            console.log(e);
+            console.error(e);
             return {
                 headers,
                 statusCode: 400,
                 body: {
-                    error: e.message,
+                    error: (e as Error).message,
                 },
             };
         }

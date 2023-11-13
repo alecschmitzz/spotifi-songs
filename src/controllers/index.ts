@@ -12,6 +12,16 @@ import makePatchSong from './patch-song';
 import makeDeleteSong from './delete-song';
 import notFound from './not-found';
 
+import { HttpRequest, Song } from '../use-cases/types';
+
+interface ControllerDependencies {
+    addSong: (songInfo: Song) => Promise<Song>;
+    getSingleSong: (songInfo: { id: string }) => Promise<Song>;
+    listSongs: () => Promise<Song[]>;
+    editSong: (songInfo: Song) => Promise<Song>;
+    removeSong: (songInfo: { id: string }) => Promise<{ deletedCount: number }>;
+}
+
 const postSong = makePostSong({ addSong });
 const getSong = makeGetSong({ getSingleSong });
 const getSongs = makeGetSongs({ listSongs });

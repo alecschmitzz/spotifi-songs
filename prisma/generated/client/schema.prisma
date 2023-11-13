@@ -19,7 +19,7 @@ model Song {
   duration  Int
   genre     String
   released  Boolean
-  album     String?
+  album     String
   hash      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

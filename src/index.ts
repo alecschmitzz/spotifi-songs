@@ -30,7 +30,7 @@ app.patch(`${apiRoot}/songs`, makeCallback(patchSong));
 app.get(`${apiRoot}/songs`, makeCallback(getSongs));
 app.get(`${apiRoot}/songs/:id`, makeCallback(getSong));
 app.get(`${apiRoot}`, (req, res) => {
-  res.json({ message: "Ok it works...", hostname: os.hostname() })
+  res.json({ message: "Ok it works...", hostname: os.hostname(), version: "0.0.1-beta2" })
 })
 app.use(makeCallback(notFound));
 

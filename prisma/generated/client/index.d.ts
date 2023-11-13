@@ -1058,7 +1058,7 @@ export namespace Prisma {
     duration: number
     genre: string
     released: boolean
-    album: string | null
+    album: string
     hash: string
     createdAt: Date
     updatedAt: Date
@@ -1120,7 +1120,7 @@ export namespace Prisma {
       duration: number
       genre: string
       released: boolean
-      album: string | null
+      album: string
       hash: string
       createdAt: Date
       updatedAt: Date
@@ -1853,14 +1853,6 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
   /**
    * Field references 
    */
@@ -1914,7 +1906,7 @@ export namespace Prisma {
     duration?: IntFilter<"Song"> | number
     genre?: StringFilter<"Song"> | string
     released?: BoolFilter<"Song"> | boolean
-    album?: StringNullableFilter<"Song"> | string | null
+    album?: StringFilter<"Song"> | string
     hash?: StringFilter<"Song"> | string
     createdAt?: DateTimeFilter<"Song"> | Date | string
     updatedAt?: DateTimeFilter<"Song"> | Date | string
@@ -1927,7 +1919,7 @@ export namespace Prisma {
     duration?: SortOrder
     genre?: SortOrder
     released?: SortOrder
-    album?: SortOrderInput | SortOrder
+    album?: SortOrder
     hash?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -1943,7 +1935,7 @@ export namespace Prisma {
     duration?: IntFilter<"Song"> | number
     genre?: StringFilter<"Song"> | string
     released?: BoolFilter<"Song"> | boolean
-    album?: StringNullableFilter<"Song"> | string | null
+    album?: StringFilter<"Song"> | string
     hash?: StringFilter<"Song"> | string
     createdAt?: DateTimeFilter<"Song"> | Date | string
     updatedAt?: DateTimeFilter<"Song"> | Date | string
@@ -1956,7 +1948,7 @@ export namespace Prisma {
     duration?: SortOrder
     genre?: SortOrder
     released?: SortOrder
-    album?: SortOrderInput | SortOrder
+    album?: SortOrder
     hash?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -1977,7 +1969,7 @@ export namespace Prisma {
     duration?: IntWithAggregatesFilter<"Song"> | number
     genre?: StringWithAggregatesFilter<"Song"> | string
     released?: BoolWithAggregatesFilter<"Song"> | boolean
-    album?: StringNullableWithAggregatesFilter<"Song"> | string | null
+    album?: StringWithAggregatesFilter<"Song"> | string
     hash?: StringWithAggregatesFilter<"Song"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Song"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Song"> | Date | string
@@ -1990,7 +1982,7 @@ export namespace Prisma {
     duration: number
     genre: string
     released: boolean
-    album?: string | null
+    album: string
     hash: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2003,7 +1995,7 @@ export namespace Prisma {
     duration: number
     genre: string
     released: boolean
-    album?: string | null
+    album: string
     hash: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2016,7 +2008,7 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     genre?: StringFieldUpdateOperationsInput | string
     released?: BoolFieldUpdateOperationsInput | boolean
-    album?: NullableStringFieldUpdateOperationsInput | string | null
+    album?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2029,7 +2021,7 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     genre?: StringFieldUpdateOperationsInput | string
     released?: BoolFieldUpdateOperationsInput | boolean
-    album?: NullableStringFieldUpdateOperationsInput | string | null
+    album?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2042,7 +2034,7 @@ export namespace Prisma {
     duration: number
     genre: string
     released: boolean
-    album?: string | null
+    album: string
     hash: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -2055,7 +2047,7 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     genre?: StringFieldUpdateOperationsInput | string
     released?: BoolFieldUpdateOperationsInput | boolean
-    album?: NullableStringFieldUpdateOperationsInput | string | null
+    album?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2068,7 +2060,7 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     genre?: StringFieldUpdateOperationsInput | string
     released?: BoolFieldUpdateOperationsInput | boolean
-    album?: NullableStringFieldUpdateOperationsInput | string | null
+    album?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2104,20 +2096,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -2127,11 +2105,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type SongCountOrderByAggregateInput = {
@@ -2222,23 +2195,6 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -2267,10 +2223,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -2305,20 +2257,6 @@ export namespace Prisma {
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2382,34 +2320,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {

@@ -1,5 +1,11 @@
-export default function makeGetSongs({ listSongs }) {
-    return async function getSongs(httpRequest) {
+import { HttpRequest, Song } from "../use-cases/types";
+
+interface GetSongsDependencies {
+    listSongs: () => Promise<Song[]>;
+}
+
+export default function makeGetSongs({ listSongs }: GetSongsDependencies) {
+    return async function getSongs(httpRequest: HttpRequest) {
         const headers = {
             'Content-Type': 'application/json',
         };
@@ -10,14 +16,14 @@ export default function makeGetSongs({ listSongs }) {
                 statusCode: 200,
                 body: songs,
             };
-        } catch (e) {
+        } catch (e: unknown) {
             // TODO: Error logging
-            console.log(e);
+            console.error(e);
             return {
                 headers,
                 statusCode: 400,
                 body: {
-                    error: e.message,
+                    error: (e as Error).message,
                 },
             };
         }

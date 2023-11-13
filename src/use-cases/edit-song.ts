@@ -1,10 +1,12 @@
-import makeSong from '../song'
+import { makeSong } from '../song';
+import { SongsDb } from './types';
 
-export default function makeEditSong({ songsDb }) {
-    return async function editSong({ id, ...changes } = {}) {
+export default function makeEditSong({ songsDb }: { songsDb: SongsDb; }) {
+    return async function editSong({ id, ...changes }: { id: string;[key: string]: any }) {
         if (!id) {
-            throw new Error('You must supply an id.')
+            throw new Error('You must supply an id.');
         }
+
         if (
             !changes.title &&
             !changes.artist &&
@@ -16,15 +18,18 @@ export default function makeEditSong({ songsDb }) {
             throw new Error('You must supply at least one change to edit.');
         }
 
-        const existing = await songsDb.findById({ id })
+        const existing = await songsDb.findById({ id });
 
         if (!existing) {
-            throw new RangeError('Song not found.')
+            throw new RangeError('Song not found.');
         }
-        const song = makeSong({ ...existing, ...changes })
+
+        const song = makeSong({ ...existing, ...changes });
+
         if (song.getHash() === existing.hash) {
-            return existing
+            return existing;
         }
+
         const updated = await songsDb.update({
             id: song.getId(),
             title: song.getTitle(),
@@ -33,8 +38,9 @@ export default function makeEditSong({ songsDb }) {
             genre: song.getGenre(),
             album: song.getAlbum(),
             released: song.getReleased(),
-            hash: song.getHash()
-        })
-        return { ...existing, ...updated }
-    }
+            hash: song.getHash(),
+        });
+
+        return { ...existing, ...updated };
+    };
 }
