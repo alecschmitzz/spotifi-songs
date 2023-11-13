@@ -23,7 +23,7 @@ export default function makePatchSong({ editSong }: PostSongDependencies) {
             };
         } catch (e: any) {
             // TODO: Error logging
-            console.log(e);
+            // console.log(e);
             if (e.name === 'RangeError') {
                 return {
                     headers: {

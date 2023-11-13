@@ -13,12 +13,12 @@ export default function makeGetSong({ getSingleSong }: GetSongDependencies) {
             const song = await getSingleSong({ id: httpRequest.params.id });
             return {
                 headers,
-                statusCode: 200,
+                statusCode: song ? 200 : 404,
                 body: song,
             };
         } catch (e: unknown) {
             // TODO: Error logging
-            console.error(e);
+            // console.error(e);
             return {
                 headers,
                 statusCode: 400,

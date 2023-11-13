@@ -1,5 +1,5 @@
-import { PrismaClient } from "../../prisma/generated/client";
-import { SongsDb, Song } from "../use-cases/types";
+import { PrismaClient, Song } from "../../prisma/generated/client";
+import { SongsDb } from "../use-cases/types";
 
 export default function makeSongsDb({ prisma }: { prisma: PrismaClient }): SongsDb {
   return Object.freeze({

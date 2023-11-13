@@ -45,7 +45,7 @@ RUN bunx prisma generate
 
 # [optional] tests & build
 ENV NODE_ENV=production
-# RUN bun test
+RUN bun run test-build
 # RUN bun run build
 
 
