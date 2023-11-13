@@ -10,13 +10,13 @@ const makeSong = buildMakeSong({ Id, md5, sanitize })
 export { makeSong };
 export type { Song };
 
-function md5(text: string): string {
+export function md5(text: string): string {
     return crypto
         .createHash('md5')
         .update(text, 'utf-8')
         .digest('hex')
 }
 
-function sanitize(text: string): string {
+export function sanitize(text: string): string {
     return sanitizeHtml(text)
 }
