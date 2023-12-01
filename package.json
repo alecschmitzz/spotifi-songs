@@ -29,7 +29,8 @@
   },
   "scripts": {
     "dev": "dotenv -e .env.development -- bun --hot run ./src/index.ts",
-    "build": "dotenv -e .env.production -- bunx prisma generate && bunx prisma migrate deploy",
-    "test": "dotenv -e .env.development -- jest --watchAll --verbose --coverage"
+    "dev-test": "dotenv -e .env.development -- jest --watchAll --verbose --coverage",
+    "build": "bunx prisma generate && bunx prisma migrate deploy",
+    "test": "jest --watchAll --verbose --coverage"
   }
 }
