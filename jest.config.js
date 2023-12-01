@@ -6,5 +6,5 @@ export default {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   testMatch: ['**/*.test.ts'],
-  setupFilesAfterEnv: ['<rootDir>/src/data-access/singleton.ts'],
+  // setupFilesAfterEnv: ['<rootDir>/src/data-access/singleton.ts'],
 };

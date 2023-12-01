@@ -45,7 +45,7 @@ RUN bunx prisma generate
 
 # [optional] tests & build
 ENV NODE_ENV=production
-RUN bun run test-build
+RUN bun run build
 # RUN bun run build
 
 
@@ -67,4 +67,4 @@ COPY --from=prerelease /usr/src/app/package.json /usr/src/app
 # run the app
 USER bun
 EXPOSE 3000
-CMD [ "bun", "run", "./src/index.js" ]
+CMD [ "bun", "run", "dotenv -e .env.production", "bun", "run", "./src/index.ts" ]
