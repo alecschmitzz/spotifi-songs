@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import path from 'path';
 import os from 'os';
 import {
   postSong,
@@ -11,6 +12,7 @@ import {
   notFound,
 } from './controllers'; // Adjust the import paths according to your project structure
 import makeCallback from './express-callback';
+
 
 dotenv.config();
 
@@ -35,8 +37,9 @@ app.get(`${apiRoot}`, (req, res) => {
 app.use(makeCallback(notFound));
 
 // listen for requests
-app.listen(3000, () => {
-  console.log(`Server is listening on port 3000${apiRoot}`);
+app.listen(`${process.env.PORT}`, () => {
+  console.log(`============ ${process.env.STATUS} ============`);
+  console.log(`Server is listening on port ${process.env.PORT}${apiRoot}`);
 });
 
 export default app;

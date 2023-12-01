@@ -1,4 +1,5 @@
-import { PrismaClient, Song } from '../../prisma/generated/client';
+import { PrismaClient } from '../../prisma/generated/client';
+type Song = import('../../prisma/generated/client').Song;
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended'
 
 import prisma from './client'

@@ -44,8 +44,9 @@ RUN bunx prisma generate
 
 
 # [optional] tests & build
-ENV NODE_ENV=production
-RUN bun run test-build
+ENV NODE_ENV=development
+COPY .env.${NODE_ENV} .env
+RUN bun run build
 # RUN bun run build
 
 
@@ -56,6 +57,8 @@ RUN bun run test-build
 
 # copy production dependencies and source code into the final image
 FROM base AS release
+ENV NODE_ENV=production
+COPY .env.${NODE_ENV} .env
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/prisma /usr/src/app/prisma
 COPY --from=prerelease /usr/src/app/src /usr/src/app/src
@@ -67,4 +70,4 @@ COPY --from=prerelease /usr/src/app/package.json /usr/src/app
 # run the app
 USER bun
 EXPOSE 3000
-CMD [ "bun", "run", "./src/index.js" ]
+CMD [ "bun", "run", "./src/index.ts" ]
