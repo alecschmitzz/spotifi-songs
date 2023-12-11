@@ -120,6 +120,21 @@ exports.Prisma.SongScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PlaylistScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  hash: 'hash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SongPlaylistScalarFieldEnum = {
+  songId: 'songId',
+  playlistId: 'playlistId',
+  assignedAt: 'assignedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -127,7 +142,9 @@ exports.Prisma.SortOrder = {
 
 
 exports.Prisma.ModelName = {
-  Song: 'Song'
+  Song: 'Song',
+  Playlist: 'Playlist',
+  SongPlaylist: 'SongPlaylist'
 };
 
 /**
