@@ -24,7 +24,9 @@ export default function makeEditSong({ songsDb }: { songsDb: SongsDb; }) {
             throw new RangeError('Song not found.');
         }
 
-        const song = makeSong({ ...existing, ...changes });
+
+        const song = makeSong({ ...existing, ...changes } as { title: string; artist: string; duration: number; genre: string; album: string; released?: boolean });
+
 
         if (song.getHash() === existing.hash) {
             return existing;

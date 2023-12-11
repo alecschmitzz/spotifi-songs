@@ -18,7 +18,7 @@ export default function makeDeleteSong({ removeSong }: DeleteSongDependencies) {
             };
         } catch (e: unknown) {
             // TODO: Error logging
-            console.error(e);
+            // console.error(e);
             return {
                 headers,
                 statusCode: 400,
