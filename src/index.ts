@@ -35,8 +35,10 @@ app.get(`${apiRoot}`, (req, res) => {
 app.use(makeCallback(notFound));
 
 // listen for requests
-app.listen(3000, () => {
-  console.log(`Server is listening on port 3000${apiRoot}`);
+app.listen(`${process.env.PORT}`, () => {
+  console.log(`============ ${process.env.STATUS} ============`);
+  console.log(`Server is listening on port ${process.env.PORT}${apiRoot}`);
+  console.log(`Visit: ${process.env.BASE_URL}${apiRoot}`);
 });
 
 export default app;
