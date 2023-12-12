@@ -136,7 +136,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/alec/Documents/Fontys/Semester 3/SPOTIFI/SPOTIFI_SOURCE_CODE/spotifi-playlists/prisma/generated/client",
+      "value": "/Users/alec/Documents/Fontys/Semester 3/SPOTIFI/SPOTIFI_SOURCE_CODE/spotifi-songs/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -153,7 +153,8 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": "../../../.env",
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
   "clientVersion": "5.5.2",

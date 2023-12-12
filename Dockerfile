@@ -46,8 +46,7 @@ RUN bunx prisma generate
 # [optional] tests & build
 ENV NODE_ENV=development
 COPY .env.${NODE_ENV} .env
-RUN bun run build
-# RUN bun test
+# first fix prisma in external library to fix this:
 # RUN bun run build
 
 
